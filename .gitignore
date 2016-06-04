@@ -2,4 +2,5 @@
 *.log
 *.tmpproj
 *.db
+*.sqlite3
 keys.py
