@@ -1,2 +1,2 @@
-# rango
-I'm working through [Tango with Django](http://www.tangowithdjango.com/book17/).
+# Tango with Django
+This is a repository for storing my progress as I work through [Tango with Django](http://www.tangowithdjango.com/book17/).
