@@ -1,16 +1,10 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+
 {% load staticfiles %}
 
-<html>
-	
-	<head>
-		<title>About</title>
-	</head>
+{% block title %}About{% endblock %}
 
-	<body>
-		<h1>Bonnie "Prince" Billy says...</h1>
-		<strong>{{ bpb }}</strong><br />
-		<a href="/rango/">Rango</a><br />
-		<img src="{% static "/media/bonnie2.jpg" %}" alt="Picture of Bonnie" />
-	</body>
-</html>
+{% block body_block %}
+	<h1>Bonnie "Prince" Billy</h1>
+	<img src="{% static "/media/bonnie2.jpg" %}" alt="Picture of Bonnie" />
+{% endblock %}

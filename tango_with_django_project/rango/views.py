@@ -18,7 +18,7 @@ def user_logout(request):
 
 @login_required
 def restricted(request):
-    return HttpResponse("Since you're logged in, you can see this text!")
+    return render(request, 'rango/restricted.html', {})
 
 def user_login(request):
 
@@ -164,9 +164,9 @@ def category(request, category_name_slug):
 	return render(request, 'rango/category.html', context_dict)
 
 def about(request):
-	context_dict = {'bpb' : "I see a darkness"}
-	return render(request, 'rango/about.html', context_dict)
+	return render(request, 'rango/about.html', {})
 
+@login_required
 def add_category(request):
     # A HTTP POST?
         if request.method == 'POST':
@@ -191,6 +191,7 @@ def add_category(request):
             # Render the form with error message (if any).
         return render(request, 'rango/add_category.html', {'form': form})
 
+@login_required
 def add_page(request, category_name_slug):
 
     try:

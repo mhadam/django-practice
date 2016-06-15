@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Restricted{% endblock %}
+
+{% block body_block %}
+	<h1>You can reach this page because you're logged in!</h1>
+	<img src="{% static "/media/bonnie.jpg" %}" alt="Bonnie, of the &quot;Prince&quot; Billy Variety" />
+{% endblock %}
