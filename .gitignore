@@ -3,4 +3,5 @@
 *.tmpproj
 *.db
 *.sqlite3
+*.swp
 keys.py
