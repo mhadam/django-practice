@@ -5,6 +5,13 @@
 {% block title %}About{% endblock %}
 
 {% block body_block %}
-	<h1>Bonnie "Prince" Billy</h1>
-	<img src="{% static "/media/bonnie2.jpg" %}" alt="Picture of Bonnie" />
+	<div class="page-header">
+		<h1>About</h1>
+	</div>
+	<div>
+		<p>This is <strong>Rango's about page</strong>.</p>
+		<p>You've visited the site <strong>{{ visits }} time{{ visits|pluralize }}</strong>.</p>
+		<p>And here's Bonnie <q>Prince</q> Billy:</p>
+		<img width="500" src="{% static "images/bonnie.jpg" %}" alt="Picture of Rango" /> <!-- New line -->
+	</div>
 {% endblock %}
