@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body_block %}
+	<div class="row placeholders">
+		<div class="col-xs-12 col-sm-6 placeholder">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3>Profiles</h3>
+				</div>
+			</div>
+			{% if profiles %}
+				<ul class="list-group">
+				{% for profile in profiles %}
+					<li class="list-group-item text-center">
+						{% if profile.slug == active_profile.slug %}
+						<span class="label label-info pull-right">You!</span>
+						{% endif %}
+						<a href="/rango/profile_directory/{{ profile.slug }}/">
+						{{ profile.user.username }}
+						</a>
+					</li>
+				{% endfor %}
+				</ul>
+			{% else %}
+				<strong>There are no profiles present.</strong>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

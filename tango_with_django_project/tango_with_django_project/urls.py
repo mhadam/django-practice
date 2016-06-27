@@ -5,8 +5,8 @@ from django.contrib import admin
 from registration.backends.simple.views import RegistrationView
 
 class MyRegistrationView(RegistrationView):
-    def get_success_url(self, request, user):
-        return '/rango/'
+    def get_success_url(self, request):
+        return 'add_profile'
 
 urlpatterns = patterns('',
     # Examples:
@@ -15,9 +15,9 @@ urlpatterns = patterns('',
 
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^rango/', include('rango.urls')), # ADD THIS NEW TUPLE!
-        url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
-        url(r'^accounts/password/change/$', 'django.contrib.auth.views.password_change', { 'post_change_redirect': 'index' }),
-        url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
+    #url(r'^accounts/password/change/$', 'django.contrib.auth.views.password_change', { 'post_change_redirect': 'index' }),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
 )
 
 if settings.DEBUG:

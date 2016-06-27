@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body_block %}
+  	{% if found %}
+	<div class="jumbotron">
+  		<h1>{{ profile.user.username }}'s Profile</h1>
+  		<p>Website : <a href="{{ profile.website }}">{{ profile.website }}</a></p>
+		<div class="row">
+	  		<div class="col-sm-6 col-md-4">
+	    		<div class="thumbnail">
+	      			<img src="/media/{{ profile.picture }}" alt="{{ profile.user.username }}'s Picture">
+	    		</div>
+	  		</div>
+		</div>
+	</div>
+  	{% else %}
+  	<div class="alert alert-warning" role="alert">The profile doesn't exist!</div>
+  	{% endif %}
+{% endblock %}
