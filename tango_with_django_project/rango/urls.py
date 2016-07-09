@@ -2,6 +2,7 @@ from django.conf.urls import patterns, url
 from rango import views
 
 urlpatterns = patterns('',
+    url(r'^suggest_category/$', views.suggest_category, name='suggest_category'),
     url(r'^$', views.index, name='index'),
     url(r'^goto/', views.track_url, name='goto'),
     url(r'^about/', views.about, name='about'),
