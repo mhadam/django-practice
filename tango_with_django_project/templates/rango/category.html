@@ -52,7 +52,7 @@
 			<ul class="list-group">
 				{% for page in pages %}
 				<li class="list-group-item">
-					<span class="badge">Views: {{ page.views }}</span>
+					<span class="badge">Views: {{ page.views }} Last visit: {{page.last_visit}}</span>
 					<a href="{% url 'goto' %}?page_id={{ page.id }}">{{ page.title }}</a>
 				</li>
 				{% endfor %}

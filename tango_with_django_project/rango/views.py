@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from rango.models import Category, Page, UserProfile, User
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.utils import timezone
 from django.template.defaultfilters import slugify
 
 from rango.forms import CategoryForm, PageForm
@@ -67,22 +68,6 @@ def like_category(request):
             cat.save()
     return HttpResponse(likes)
 
-def track_url(request):
-    page_id = None
-    url = '/rango/'
-    if request.method == 'GET':
-        if 'page_id' in request.GET:
-            page_id = request.GET['page_id']
-            try:
-                page = Page.objects.get(id=page_id)
-                page.views = page.views + 1
-                page.save()
-                url = page.url
-            except:
-                pass
-
-    return redirect(url)
-
 @login_required
 def restricted(request):
     return render(request, 'rango/restricted.html', {})
@@ -146,10 +131,17 @@ def track_url(request):
         if 'page_id' in request.GET:
             try:
                 page_id = request.GET['page_id']
-                page = Page.objects.get(id=page_id)
-                page.views += 1
-                page.save()
+                page = Page.objects.get(id=int(page_id))
                 url = page.url
+                page.views += 1
+                current_time = timezone.now()
+                if page.first_visit == None:
+                    page.first_visit = current_time
+                    page.last_visit = current_time
+                else:
+                    if current_time - page.last_visit > timezone.timedelta(microseconds=0):
+                        page.last_visit = current_time
+                page.save()
             except:
                 pass
                 
