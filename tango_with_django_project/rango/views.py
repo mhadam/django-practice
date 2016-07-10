@@ -11,6 +11,25 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from rango.bing_search import run_query
 
+@login_required
+def auto_add_page(request):
+    context_dict = {}
+    cat_id = None
+    url = None
+    title = None
+
+    if request.method == 'GET':
+        title = request.GET['title']
+        url = request.GET['url']
+        cat_id = request.GET['category_id']
+        if cat_id:
+            category = Category.objects.get(id=int(cat_id))
+            p = Page.objects.get_or_create(category=category, title=title, url=url)
+            pages = Page.objects.filter(category=category).order_by('-views')
+            context_dict['pages'] = pages
+
+    return render(request, 'rango/page_list.html', context_dict)
+
 def get_category_list(max_results=0, starts_with=''):
     cat_list = []
     if starts_with:
@@ -56,7 +75,7 @@ def track_url(request):
             page_id = request.GET['page_id']
             try:
                 page = Page.objects.get(id=page_id)
-                page.vews = page.views + 1
+                page.views = page.views + 1
                 page.save()
                 url = page.url
             except:

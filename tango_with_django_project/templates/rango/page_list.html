@@ -1,0 +1,12 @@
+{% if pages %}
+<ul class="list-group">
+	{% for page in pages %}
+	<li class="list-group-item">
+		<span class="badge">Views: {{page.views}}</span>
+		<a href="{% url 'goto' %}?page_id={{page.id}}">{{page.title}}</a>
+	</li>
+	{% endfor %}
+</ul>
+{% else %}
+<strong>No pages currently in category.</strong>
+{% endif %}
